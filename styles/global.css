@@ -1,0 +1,36 @@
+.container {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 98vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.home_container {
+  flex: 1;
+  min-height: 50vh;
+  overflow-y: auto;
+}
+
+.bottom_nav {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.centerText{
+  text-align: center;
+}
+
+.inbox_container{
+  width: 80%;
+  margin: auto;
+}
