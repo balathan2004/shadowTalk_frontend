@@ -1,54 +1,39 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# ShadowTalk Frontend
 
-Currently, two official plugins are available:
+ShadowTalk is a sleek and secure real-time chat platform designed for private conversations and seamless communication.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## Expanding the ESLint configuration
+- TypeScript  
+- React  
+- Vite  
+- Apollo Client  
+- Socket.IO Client  
+- GraphQL
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Realtime Messaging – Chat instantly with other users.  
+- Socket-Powered Updates – Messages delivered live via WebSockets.  
+- GraphQL Queries & Mutations – Efficient data fetching and updates.  
+- Type-Safe Frontend – Built entirely in TypeScript for better reliability.  
+- Clean UI – Simple and responsive interface for quick navigation.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## How It Works
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Connect with your account.  
+2. Start chatting with anyone in your contact list.  
+3. Messages are synced in real-time using sockets and GraphQL.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## About
+
+**Dev:** Light  
+**LinkedIn:** [Link to LinkedIn]  
+
+ShadowTalk is all about smooth, secure, and private communication — built to be lightweight yet powerful.
+
+## License
+
+This project is licensed under the MIT License.
+
