@@ -22,7 +22,7 @@ export type replyType = string | false;
 
 
 const ReplyHolder: FC<Props> = ({ children }) => {
-  const [reply, setReply] = useState<replyType>("hello");
+  const [reply, setReply] = useState<replyType>(false);
 
   return (
     <ReplyContext.Provider value={{ reply, setReply }}>

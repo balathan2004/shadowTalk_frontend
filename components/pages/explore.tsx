@@ -1,10 +1,11 @@
 import { gql, useQuery } from "@apollo/client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AlignItemsList from "../elements/userCard";
 import { useUserContext } from "../context/user_context";
-import { List } from "@mui/material";
+import { IconButton, List, TextField } from "@mui/material";
 import { userDataInterface } from "../interfaces";
+import SearchIcon from "@mui/icons-material/Search";
 
 const getUserList = gql`
   query getUserList($myId: ID!) {
@@ -18,7 +19,6 @@ const getUserList = gql`
 `;
 
 export default function Explore() {
-  const [value, setValue] = useState(0);
   const { userCred } = useUserContext();
 
   const { data, loading, error } = useQuery(getUserList, {
@@ -26,6 +26,31 @@ export default function Explore() {
     fetchPolicy: "network-only",
   });
 
+  const [availUsers, setAvailUsers] = useState<userDataInterface[]>([]);
+
+  useEffect(() => {
+    if (data) {
+      setAvailUsers([...(data.userLists as userDataInterface[])]);
+    }
+  }, [data]);
+
+  const filterUsers = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+
+    if (!value) {
+      setAvailUsers([...(data.userLists as userDataInterface[])]);
+    }
+
+    console.log(value);
+
+    setAvailUsers(() => {
+      const results = data.userLists.filter(
+        (item: userDataInterface) =>
+          item.displayName.includes(value) || item.username.includes(value)
+      );
+      return results;
+    });
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -33,8 +58,20 @@ export default function Explore() {
   return (
     <div className="inbox_container">
       <h1 className="centerText">Find Users</h1>
+      <div className="search_container">
+        <TextField
+          placeholder="Search"
+          autoFocus
+          fullWidth
+          onChange={filterUsers}
+        />
+        <IconButton>
+          <SearchIcon color="primary" fontSize="medium" />
+        </IconButton>
+      </div>
+
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-        {data.userLists.map((item: userDataInterface) => {
+        {availUsers.map((item: userDataInterface) => {
           return <AlignItemsList key={item._id} data={item} />;
         })}
       </List>

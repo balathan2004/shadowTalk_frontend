@@ -18,7 +18,6 @@ const ContextWrapper: FC<{ children: ReactNode }> = ({ children }) => {
       });
 
       const res = (await response.json()) as AuthResponseConfig;
-      console.log(res);
       if (res && res.status == 200) {
         setUserCred(res.userCred);
       } else {

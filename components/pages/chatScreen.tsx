@@ -8,13 +8,22 @@ import { useSocket } from "../context/socket_context";
 import { serverUrl } from "../../env";
 import {
   ChatMessageInterface,
+  OutgoingMessagePayload,
   ResponseConfig,
   userDataInterface,
 } from "../interfaces";
 import { Button, TextField } from "@mui/material";
 import SendData from "../utils/sendData";
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow";
-import { format, isThisMonth, isToday } from "date-fns";
+import {
+  format,
+  isSameDay,
+  isThisMonth,
+  isThisWeek,
+  isThisYear,
+  isToday,
+  isYesterday,
+} from "date-fns";
 
 const getChatAndUserCred = gql`
   query getChatAndUserCred($myId: ID!, $receiverId: ID!) {
@@ -43,13 +52,20 @@ const getChatAndUserCred = gql`
 `;
 
 const formatTimestamp = (timestamp: number) => {
-  if (isToday(timestamp)) {
-    return format(timestamp, "hh:mm a");
-  }
-  if (isThisMonth(timestamp)) {
-    return format(timestamp, "hh:mm a dd/MM");
+  return format(timestamp, "hh:mm a");
+};
+
+const formatSeperator = (date: Date) => {
+  if (isToday(date)) {
+    return "Today";
+  } else if (isYesterday(date)) {
+    return "YesterDay";
+  } else if (isThisWeek(date)) {
+    return format(date, "EEEE");
+  } else if (isThisYear(date)) {
+    return format(date, "dd MMMM");
   } else {
-    return format(timestamp, "hh:mm a dd/MM/yyyy ");
+    return format(date, "dd/MM/yyyy");
   }
 };
 
@@ -76,8 +92,8 @@ export default function ChatScreen() {
   }, [searchParams]);
 
   useEffect(() => {
-    const handleNewMessage = (args: ChatMessageInterface) => {
-      setChats((prev) => [...prev, args]);
+    const handleNewMessage = (args: OutgoingMessagePayload) => {
+      setChats((prev) => [...prev, args.msgData]);
     };
 
     socket?.on("messageData", handleNewMessage);
@@ -113,9 +129,14 @@ export default function ChatScreen() {
       createdAt: new Date().getTime(),
     };
 
+    const senderInfo = {
+      photoUrl: userCred.photoUrl,
+      username: userCred.username,
+    };
+
     const response = (await SendData({
       route: `${serverUrl}/api/messages/store`,
-      data: msgData,
+      data: { msgData, senderInfo },
     })) as ResponseConfig;
     if (response && response.status == 200) {
       setChats((prev) => [...prev, msgData]);
@@ -194,11 +215,27 @@ export default function ChatScreen() {
         </header>
 
         <main ref={chatRef} className={styles.msger_chat}>
-          {chats.map((msg) => {
-            return msg.senderId.toString() === userCred?._id?.toString() ? (
-              <YourMsg data={msg} key={msg.msgId} />
-            ) : (
-              <OtherMsg data={msg} key={msg.msgId} />
+          {chats.map((msg, index) => {
+            const currentDate = new Date(msg.createdAt);
+            const prevDate =
+              index > 0 ? new Date(chats[index - 1].createdAt) : null;
+
+            const showDateSeparator =
+              !prevDate || !isSameDay(currentDate, prevDate);
+
+            return (
+              <React.Fragment key={msg.msgId}>
+                {showDateSeparator && (
+                  <div className="line_text">
+                    <span>{formatSeperator(currentDate)}</span>
+                  </div>
+                )}
+                {msg.senderId.toString() === userCred?._id?.toString() ? (
+                  <YourMsg data={msg} />
+                ) : (
+                  <OtherMsg data={msg} />
+                )}
+              </React.Fragment>
             );
           })}
         </main>

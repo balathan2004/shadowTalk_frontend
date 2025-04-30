@@ -4,9 +4,9 @@
   justify-content: space-between;
   width: 80%;
   margin: auto;
-  margin-top: 2rem;
-  min-height: 90vh;
-  max-height: 90vh;
+  min-height: 85vh;
+  max-height: 85dvh;
+  padding: 1rem;
   overflow: hidden;
   border-radius: 5px;
   box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
@@ -131,6 +131,16 @@
 }
 
 .msger_input {
-
 }
 
+@media (max-width: 600px) {
+  .msger {
+    width: 95%;
+  }
+
+  .msger_chat::-webkit-scrollbar {
+    display: none;                /* Chrome, Safari, Opera */
+  }
+
+
+}

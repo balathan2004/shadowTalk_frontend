@@ -13,7 +13,7 @@ const NotifyPopup: FC = () => {
   }; // Add dependencies
 
   const pushToChat = () => {
-    router(`/chat?chatId=${notify?.senderId}`);
+    router(`/chat?chatId=${notify?.msgData.senderId}`);
   };
 
   return (
@@ -21,9 +21,20 @@ const NotifyPopup: FC = () => {
       open={!!notify}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       autoHideDuration={5000}
-      message={"New meesages"}
       onClose={handleClose}
       onClick={pushToChat}
+      message={
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <img referrerPolicy="no-referrer"
+            src={notify?.senderInfo?.photoUrl || "/default-pfp.png"}
+            alt="pfp"
+            style={{ width: 40, height: 40, borderRadius: "50%" }}
+          />
+          <span>
+            New message from <strong>{notify?.senderInfo.username}</strong>
+          </span>
+        </div>
+      }
     />
   );
 };

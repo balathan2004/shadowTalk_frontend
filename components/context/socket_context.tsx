@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import { useUserContext } from "./user_context"; // Import your userCred context
+import { serverUrl } from "../../env";
 
 interface SocketContextType {
   socket: Socket | null;
@@ -14,7 +15,7 @@ export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (userCred && userCred._id) {
-      const newSocket = io("http://localhost:4000", {
+      const newSocket = io(`${serverUrl}`, {
         withCredentials: true,
         query: { userId: userCred._id },
       });

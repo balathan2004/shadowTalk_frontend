@@ -8,6 +8,7 @@ import { useUserContext } from "../../context/user_context";
 import { useReplyContext } from "../../context/reply_context";
 import { useLoadingContext } from "../../context/loading_context";
 import { useNavigate } from "react-router-dom";
+import { serverUrl } from "../../../env";
 export default function Login() {
   const provider = new GoogleAuthProvider();
 
@@ -33,7 +34,7 @@ export default function Login() {
         photoUrl: userData.photoURL || "",
       };
       const response = await AuthPost({
-        route: "http://localhost:4000/api/auth",
+        route: `${serverUrl}/api/auth`,
         data: userFields,
       });
       console.log(response);

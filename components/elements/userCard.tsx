@@ -16,11 +16,16 @@ interface Props {
 export default function AlignItemsList({ data }: Props) {
   return (
     <>
-      <Link to={`/chat?chatId=${data._id}`} key={data._id}>
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            <Avatar alt={`${data.username}'s profile`} src={data.photoUrl} />
-          </ListItemAvatar>
+      <ListItem alignItems="flex-start">
+      <Link to={`/profile?${data._id}`} key={data._id}>
+
+        <ListItemAvatar>
+
+          <Avatar alt={`${data.username}'s profile`} src={data.photoUrl} />
+        </ListItemAvatar>
+        </Link>
+
+        <Link to={`/chat?chatId=${data._id}`} key={data._id}>
           <ListItemText
             primary={data.username}
             secondary={
@@ -35,8 +40,8 @@ export default function AlignItemsList({ data }: Props) {
               </React.Fragment>
             }
           />
-        </ListItem>
-      </Link>
+        </Link>
+      </ListItem>
     </>
   );
 }

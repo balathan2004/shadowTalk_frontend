@@ -6,6 +6,7 @@ import Account from "../components/pages/account";
 import Feeds from "../components/pages/feeds";
 import Explore from "../components/pages/explore";
 import Inbox from "../components/pages/inbox";
+import Profile from "../components/pages/profile"
 import BottomNav from "../components/elements/bottomNav";
 import ContextWrapper from "../components/context/context_wrapper";
 import LoadingHolder from "../components/context/loading_context";
@@ -19,10 +20,11 @@ import {
 import NotifyHolder, {
   useNotifyContext,
 } from "../components/context/notification_context";
-import { ChatMessageInterface } from "../components/interfaces";
+import { ChatMessageInterface, OutgoingMessagePayload } from "../components/interfaces";
+import { serverUrl } from "../env";
 function App() {
   const client = new ApolloClient({
-    uri: "http://localhost:4000/graphql", // Ensure this is correct
+    uri: `${serverUrl}/graphql`, // Ensure this is correct
     cache: new InMemoryCache({ addTypename: false }),
   });
 
@@ -43,6 +45,7 @@ function App() {
                         <Route path="/inbox" element={<Inbox />}></Route>
                       </Route>
                       <Route path="/chat" element={<ChatScreen />}></Route>
+                      <Route path="/profile" element={<Profile />}></Route>
                       <Route path="/auth/login" element={<Login />}></Route>
                     </Routes>
                   </ContextWrapper>
@@ -61,7 +64,7 @@ function Layout() {
   const { setNotify } = useNotifyContext();
 
   useEffect(() => {
-    const handleNewMessage = (args: ChatMessageInterface) => {
+    const handleNewMessage = (args: OutgoingMessagePayload) => {
       setNotify(args);
     };
 

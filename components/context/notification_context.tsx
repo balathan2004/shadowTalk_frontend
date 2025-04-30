@@ -1,5 +1,5 @@
 import React, { useContext, useState, FC, ReactNode } from "react";
-import { ChatMessageInterface } from "../interfaces";
+import { OutgoingMessagePayload } from "../interfaces";
 
 export interface NotifyContextType {
   notify: notifyType;
@@ -14,7 +14,7 @@ export const NotifyContext = React.createContext<NotifyContextType>({
 interface Props {
   children: ReactNode;
 }
-export type notifyType = ChatMessageInterface | null;
+export type notifyType = OutgoingMessagePayload | null;
 
 const NotifyHolder: FC<Props> = ({ children }) => {
   const [notify, setNotify] = useState<notifyType>(null);

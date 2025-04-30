@@ -21,6 +21,14 @@ export interface ChatMessageInterface {
   readonly createdAt: number; // Timestamp of when the message was created
 }
 
+export type OutgoingMessagePayload = {
+  msgData: ChatMessageInterface;
+  senderInfo: {
+    username: string;
+    photoUrl: string;
+  };
+};
+
 export interface AuthResponseConfig extends ResponseConfig {
   userCred: userDataInterface | null;
 }

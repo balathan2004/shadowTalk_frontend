@@ -30,7 +30,32 @@ a {
   text-align: center;
 }
 
+.line_text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #333;
+  margin:5px 0;
+}
+
+.line_text::before,
+.line_text::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #aaa;
+  margin: 0 10px;
+}
+
+
+
 .inbox_container{
   width: 80%;
   margin: auto;
+}
+
+.search_container{
+
+  display: flex;
+  align-items: center;
+
 }
