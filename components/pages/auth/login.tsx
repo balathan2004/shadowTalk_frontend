@@ -1,8 +1,7 @@
 import { Button } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../../../config";
-import React from "react";
+import { auth } from "../../utils/config";
 import AuthPost from "../../utils/authPost";
 import { useUserContext } from "../../context/user_context";
 import { useReplyContext } from "../../context/reply_context";
@@ -45,7 +44,7 @@ export default function Login() {
         router("/feeds");
       }
     } catch (err) {
-      alert(err)
+      alert(err);
       console.log(err);
     }
   };

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import  { FC } from "react";
 import { useNotifyContext } from "../context/notification_context";
 import Snackbar from "@mui/material/Snackbar";
 import { useNavigate } from "react-router-dom";
