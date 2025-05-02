@@ -1,7 +1,7 @@
-import React, { Component, useEffect } from "react";
+
 import styles from "../../styles/account.module.css";
 import { timeHandler } from "../utils/smallComponents";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 
 const getUser = gql`

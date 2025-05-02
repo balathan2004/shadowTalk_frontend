@@ -1,5 +1,5 @@
 import { List } from "@mui/material";
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { useUserContext } from "../context/user_context";
 import { userDataInterface } from "../interfaces";
 import { gql, useQuery } from "@apollo/client";
@@ -27,7 +27,7 @@ export default function Inbox() {
     skip: !userCred,
   });
 
-  console.log(data);
+
 
   useEffect(() => {
     socket?.emit("active", "active");

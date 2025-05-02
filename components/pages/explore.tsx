@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import AlignItemsList from "../elements/userCard";
 import { useUserContext } from "../context/user_context";
 import { IconButton, List, TextField } from "@mui/material";

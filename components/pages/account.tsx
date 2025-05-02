@@ -1,7 +1,5 @@
-import React, { Component } from "react";
 import { useUserContext } from "../context/user_context";
 import styles from "../../styles/account.module.css";
-import { formatDistanceToNow } from "date-fns";
 import { timeHandler } from "../utils/smallComponents";
 
 
