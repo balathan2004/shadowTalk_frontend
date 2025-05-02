@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import {auth} from "@utils/config"
+import {auth} from "./config"
 import AuthPost from "../../utils/authPost";
 import { useUserContext } from "../../context/user_context";
 import { useReplyContext } from "../../context/reply_context";
