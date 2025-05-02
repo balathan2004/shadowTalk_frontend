@@ -20,7 +20,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "baseUrl": ".", // This sets the base path for your project
+    "paths": {
+      "@components/*": ["components/*"],
+      "@utils/*": ["components/utils/*"]
+    }
   },
-  "include": ["src","components","styles"]
+
+  "include": ["src", "components", "styles"]
 }
