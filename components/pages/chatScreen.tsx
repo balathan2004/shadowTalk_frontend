@@ -231,9 +231,9 @@ export default function ChatScreen() {
                   </div>
                 )}
                 {msg.senderId.toString() === userCred?._id?.toString() ? (
-                  <YourMsg data={msg} />
+                  <YourMsg data={msg} key={msg._id} />
                 ) : (
-                  <OtherMsg data={msg} />
+                  <OtherMsg data={msg} key={msg._id}  />
                 )}
               </React.Fragment>
             );

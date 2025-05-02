@@ -25,14 +25,25 @@ const NotifyPopup: FC = () => {
       onClick={pushToChat}
       message={
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <img referrerPolicy="no-referrer"
+          <img
+            referrerPolicy="no-referrer"
             src={notify?.senderInfo?.photoUrl || "/default-pfp.png"}
             alt="pfp"
-            style={{ width: 40, height: 40, borderRadius: "50%" }}
+            style={{ width: 50, height: 50, borderRadius: "50%" }}
           />
-          <span>
-            New message from <strong>{notify?.senderInfo.username}</strong>
-          </span>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px",
+            }}
+          >
+            <span>Message From {notify?.senderInfo.username}</span>
+
+            <span>
+              <strong>{notify?.msgData.content}</strong>
+            </span>
+          </div>
         </div>
       }
     />
