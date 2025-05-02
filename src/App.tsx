@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
+import { useEffect } from "react";
 import Login from "../components/pages/auth/login";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Account from "../components/pages/account";
@@ -20,7 +20,7 @@ import {
 import NotifyHolder, {
   useNotifyContext,
 } from "../components/context/notification_context";
-import { ChatMessageInterface, OutgoingMessagePayload } from "../components/interfaces";
+import {  OutgoingMessagePayload } from "../components/interfaces";
 import { serverUrl } from "../env";
 function App() {
   const client = new ApolloClient({

@@ -27,7 +27,8 @@ export default function Profile() {
     fetchPolicy: "network-only",
   });
 
-  console.log(data);
+
+  console.log(data,loading,error);
 
   if (data) {
     return (

@@ -83,6 +83,8 @@ export default function ChatScreen() {
     skip: !userCred?._id || !chatId,
     fetchPolicy: "network-only",
   });
+
+  console.log(loading,error)
   const chatRef = useRef<HTMLDivElement | null>(null);
   const { socket } = useSocket();
 

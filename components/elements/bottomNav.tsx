@@ -1,5 +1,5 @@
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import InboxIcon from "@mui/icons-material/Inbox";
@@ -14,7 +14,7 @@ export default function BottomNav() {
       className="bottom_nav"
       showLabels
       value={value}
-      onChange={(event, newValue) => {
+      onChange={(_, newValue) => {
         setValue(newValue);
       }}
     >
