@@ -22,6 +22,6 @@ export default async function AuthPost({ data, route }: Props) {
 
     return response;
   } catch (err) {
-    throw new Error(err);
+    throw new Error(err as string);
   }
 }

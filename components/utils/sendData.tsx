@@ -23,6 +23,6 @@ export default async function SendData({ data, route }: Props) {
 
     return response;
   } catch (err) {
-    throw new Error(err);
+    throw new Error(err as string);
   }
 }
